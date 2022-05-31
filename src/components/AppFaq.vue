@@ -10,8 +10,15 @@
             v-for="item of faq"
             :key="item.id"
           >
-            <div class="d-flex faq-tab__wrapper">
-              <button class="faq-tab__button" @click="toggleTab(item.id)"><span>+</span></button>
+            <div class="d-flex faq-tab__wrapper" @click="toggleTab(item.id)">
+              <button class="faq-tab__button">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="4.5" y1="17.5" x2="31.5" y2="17.5" :stroke="activeTab === item.id ? '#ff0000' : 'black'" stroke-width="3" stroke-linecap="round"/>
+                  <path v-if="activeTab !== item.id" d="M18 5L18 31" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                  <rect x="0.5" y="0.5" width="35" height="35" rx="1.5" stroke="black"/>
+                </svg>
+
+              </button>
               <p class="faq-tab__quest">{{ item.quest }}</p>
             </div>
             <transition name="nested" :duration="550">
@@ -67,22 +74,18 @@ export default {
       transition: max-height 0.5s
       &__wrapper
         position: relative
+        cursor: pointer
       &__button
         position: absolute
         top: 46%
         left: 0
         transform: translateY(-50%)
-        width: 16px
-        height: 16px
-        border: 1px solid #000000
         background: none
+        border: none
         cursor: pointer
-        span
-          line-height: 0
-          position: absolute
-          top: 45%
-          left: 45%
-          transform: translate(-50%)
+        svg
+          width: 16px
+          height: 16px
       &__quest
         margin: 7px 0 7px 25px
       &__answer
@@ -123,4 +126,8 @@ export default {
       font-size: 18px
       &__answer
         font-size: 16px
+      &__button
+        span
+          top: 47%
+          left: 47%
 </style>
