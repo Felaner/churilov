@@ -8,14 +8,14 @@
           <p class="contacts-address">
             Директор филиала <span>Churilov_Pro</span><br>г. Барнаул
           </p>
-          <a href="#" class="contacts-phone">+7 (908) 345-07-06</a>
+          <a href="tel:+79237249700" class="contacts-phone">+7 (923) 724-97-00</a>
           <p class="contacts-add">По всем вопросам, касающимся ремонта или отделки вы можете обратиться лично ко мне и я обязательно вам отвечу в самый короткий срок.</p>
           <div class="contacts-buttons">
-            <a href="#">
+            <a href="https://api.whatsapp.com/send/?phone=79237249700&text&app_absent=0" target="_blank">
               <img src="@/assets/images/icons/wa.svg" alt="whatsapp">
               Есть вопросы?<br>пишите в WhatsApp
             </a>
-            <a href="#">
+            <a href="https://instagram.com/churilov_pro?igshid=YmMyMTA2M2Y=" target="_blank">
               <img src="@/assets/images/icons/ig.svg" alt="instagram">
               Подписаться на <br>Instagram
             </a>

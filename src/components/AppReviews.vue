@@ -60,23 +60,23 @@ export default {
 
 <style scoped lang="sass">
   .reviews
-    padding: 70px 0 140px
+    padding: 70px 0 0
 
 //@media (max-width: 1399.98px)
 
 @media (max-width: 1199.98px)
   .reviews
-    padding: 70px 0 100px
+    padding: 70px 0 0
 
 @media (max-width: 991.98px)
   .reviews
-    padding: 50px 0 70px
+    padding: 50px 0 0
 
 //@media (max-width: 767.98px)
 
 @media (max-width: 575.98px)
   .reviews
-    padding: 30px 0 30px
+    padding: 30px 0 0
     .subtitle
       margin-top: 10px
       margin-bottom: 15px

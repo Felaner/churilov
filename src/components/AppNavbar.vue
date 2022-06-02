@@ -16,15 +16,15 @@
               Свяжитесь с нами:
             </p>
             <div class="navbar-social" :class="{ 'vertical-center': isExpand }">
-              <a href=""><img src="@/assets/images/icons/wa.svg" alt="whatsapp"></a>
+              <a href="https://api.whatsapp.com/send/?phone=79237249700&text&app_absent=0" target="_blank"><img src="@/assets/images/icons/wa.svg" alt="whatsapp"></a>
               <a href=""><img src="@/assets/images/icons/tg.svg" alt="telegram"></a>
             </div>
           </div>
         </div>
         <div class="col-md-2 offset-xl-0 offset-md-1 d-lg-flex d-none justify-end">
-          <a class="navbar-phone" href="">
+          <a class="navbar-phone" href="tel:+79237249700">
             <img src="@/assets/images/icons/phone.svg" alt="phone">
-            <p>+7 (999) 999-99-99</p>
+            <p>+7 (923) 724-97-00</p>
           </a>
         </div>
         <div class="col-md-3 offset-lg-1 offset-xl-0 d-lg-flex d-none justify-end">
@@ -62,9 +62,9 @@
   </div>
   <div class="navbar__mobile" v-if="menuIsOpen">
     <div class="d-flex justify-between">
-      <a class="navbar__mobile-phone" href="">
+      <a class="navbar__mobile-phone" href="tel:+79237249700">
         <img src="@/assets/images/icons/phone.svg" alt="phone">
-        <p>+7 (999) 999-99-99</p>
+        <p>+7 (923) 724-97-00</p>
       </a>
       <button class="navbar__mobile-close" @click.prevent="openMobileMenu"><img src="@/assets/images/icons/close.svg" alt="close"></button>
     </div>
@@ -75,7 +75,7 @@
       </li>
     </ul>
     <div class="navbar__mobile-social">
-      <a href=""><img src="@/assets/images/icons/wa.svg" alt="whatsapp">WhatsApp</a>
+      <a href="https://api.whatsapp.com/send/?phone=79237249700&text&app_absent=0" target="_blank"><img src="@/assets/images/icons/wa.svg" alt="whatsapp">WhatsApp</a>
       <a href=""><img src="@/assets/images/icons/tg.svg" alt="telegram">Telegram</a>
     </div>
     <app-button

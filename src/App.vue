@@ -10,7 +10,7 @@
   <app-portfolio></app-portfolio>
   <app-excursion></app-excursion>
   <app-reviews></app-reviews>
-  <app-stock></app-stock>
+<!--  <app-stock></app-stock>-->
   <app-add-services></app-add-services>
   <app-contacts></app-contacts>
   <app-faq></app-faq>
@@ -30,7 +30,7 @@ import AppSteps from '@/components/AppSteps'
 import AppPortfolio from '@/components/AppPortfolio'
 import AppExcursion from '@/components/AppExcursion'
 import AppReviews from '@/components/AppReviews'
-import AppStock from '@/components/AppStock'
+// import AppStock from '@/components/AppStock'
 import AppAddServices from '@/components/AppAddServices'
 import AppContacts from '@/components/AppContacts'
 import AppFaq from '@/components/AppFaq'
@@ -52,7 +52,6 @@ export default {
     AppFaq,
     AppContacts,
     AppAddServices,
-    AppStock,
     AppReviews,
     AppExcursion,
     AppPortfolio,
