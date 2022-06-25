@@ -3,14 +3,14 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-6 col-lg-7 offset-xl-1">
-          <h2 class="title">Хотите узнать стоимость ремонта?</h2>
-          <p class="subtitle">Мы устанавливаем реальные цены на услуги и материалы без скрытых платежей и мелкого текста в договоре</p>
-          <p class="subtitle">Оставьте заявку и получите в течение 1 дня точную до рубля смету на ремонт под ключ вашей квартиры, дома или помещения</p>
+          <h2 class="title">{{ block.title }}</h2>
+          <p class="subtitle">{{ block.subtitle_one }}</p>
+          <p class="subtitle">{{ block.subtitle_two }}</p>
           <app-button
             :event="'scroll'"
             :type="'estimate'"
-            :text="'Получить смету'"
-            :subtext="'точная смета за 1 день'"
+            :text="block.button"
+            :subtext="block.button_small"
           ></app-button>
         </div>
       </div>
@@ -22,6 +22,7 @@
 import AppButton from '@/components/AppButton'
 export default {
   name: 'AppNeedPrice',
+  props: ['block'],
   components: { AppButton }
 }
 </script>

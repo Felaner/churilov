@@ -5,29 +5,29 @@
     :class="{ 'navbar-expand': isExpand }"
   >
     <div class="container">
-      <div class="row justify-lg-start justify-between">
+      <div class="row justify-lg-start justify-between align-center">
         <div class="col-lg-2 col-md-3 col-6 offset-xl-1 d-flex">
-          <img class="navbar-logo" src="@/assets/images/logo.svg" alt="logo">
+          <img class="navbar-logo" :src="require('@/assets/images/logo.svg')" alt="logo">
         </div>
-        <div class="col-lg-2 col-md-3 offset-md-1 d-lg-flex d-none justify-center">
+        <div class="col-lg-2 col-md-3 offset-md-1 d-lg-flex disp-none justify-center">
           <div class="navbar-wrapper" :class="{ 'd-flex justify-center': isExpand }">
             <p class="navbar-text" v-if="!isExpand">
               Есть вопросы?<br>
               Свяжитесь с нами:
             </p>
             <div class="navbar-social" :class="{ 'vertical-center': isExpand }">
-              <a href="https://api.whatsapp.com/send/?phone=79237249700&text&app_absent=0" target="_blank"><img src="@/assets/images/icons/wa.svg" alt="whatsapp"></a>
-              <a href=""><img src="@/assets/images/icons/tg.svg" alt="telegram"></a>
+              <a href="https://api.whatsapp.com/send/?phone=79237249700&text&app_absent=0" target="_blank"><img :src="require('@/assets/images/icons/wa.svg')" alt="whatsapp"></a>
+              <a href=""><img :src="require('@/assets/images/icons/tg.svg')" alt="telegram"></a>
             </div>
           </div>
         </div>
-        <div class="col-md-2 offset-xl-0 offset-md-1 d-lg-flex d-none justify-end">
+        <div class="col-md-2 offset-xl-0 offset-md-1 d-lg-flex disp-none justify-end">
           <a class="navbar-phone" href="tel:+79237249700">
-            <img src="@/assets/images/icons/phone.svg" alt="phone">
-            <p>+7 (923) 724-97-00</p>
+            <img :src="require('@/assets/images/icons/phone.svg')" alt="phone">
+            <p>{{ block.phone }}</p>
           </a>
         </div>
-        <div class="col-md-3 offset-lg-1 offset-xl-0 d-lg-flex d-none justify-end">
+        <div class="col-md-3 offset-lg-1 offset-xl-0 d-lg-flex disp-none justify-end">
           <app-button
             :event="'scroll'"
             :type="'calc'"
@@ -47,14 +47,14 @@
         class="row"
         v-if="isExpand"
       >
-        <div class="col-lg-12 d-none d-lg-block">
+        <div class="col-lg-12 disp-none d-lg-block">
           <ul class="navbar-menu">
             <li v-for="(item, index) of navItems" :key="index">
               <a href="#" @click.prevent="scrollTo(item.scrollTo)">{{ item.text }}</a>
             </li>
           </ul>
         </div>
-        <div class="col-lg-12 d-none d-lg-block">
+        <div class="col-lg-12 disp-none d-lg-block">
           <div class="scrollProgress" :style="{'width': widthScroll + 'px'}"></div>
         </div>
       </div>
@@ -63,10 +63,10 @@
   <div class="navbar__mobile" v-if="menuIsOpen">
     <div class="d-flex justify-between">
       <a class="navbar__mobile-phone" href="tel:+79237249700">
-        <img src="@/assets/images/icons/phone.svg" alt="phone">
+        <img :src="require('@/assets/images/icons/phone.svg')" alt="phone">
         <p>+7 (923) 724-97-00</p>
       </a>
-      <button class="navbar__mobile-close" @click.prevent="openMobileMenu"><img src="@/assets/images/icons/close.svg" alt="close"></button>
+      <button class="navbar__mobile-close" @click.prevent="openMobileMenu"><img :src="require('@/assets/images/icons/close.svg')" alt="close"></button>
     </div>
     <ul class="navbar__mobile-menu">
       <li v-for="(item, index) of navItems" :key="index">
@@ -75,8 +75,8 @@
       </li>
     </ul>
     <div class="navbar__mobile-social">
-      <a href="https://api.whatsapp.com/send/?phone=79237249700&text&app_absent=0" target="_blank"><img src="@/assets/images/icons/wa.svg" alt="whatsapp">WhatsApp</a>
-      <a href=""><img src="@/assets/images/icons/tg.svg" alt="telegram">Telegram</a>
+      <a href="https://api.whatsapp.com/send/?phone=79237249700&text&app_absent=0" target="_blank"><img :src="require('@/assets/images/icons/wa.svg')" alt="whatsapp">WhatsApp</a>
+      <a href=""><img :src="require('@/assets/images/icons/tg.svg')" alt="telegram">Telegram</a>
     </div>
     <app-button
       :event="'scroll'"
@@ -93,6 +93,7 @@
 import AppButton from '@/components/AppButton'
 
 export default {
+  props: ['block'],
   data () {
     return {
       windowTop: '',
@@ -106,7 +107,6 @@ export default {
         { text: 'Этапы', scrollTo: 'steps' },
         { text: 'Наши работы', scrollTo: 'portfolio' },
         { text: 'Отзывы', scrollTo: 'reviews' },
-        { text: 'Страховка', scrollTo: 'stock' },
         { text: 'Дополнительные услуги', scrollTo: 'services' },
         { text: 'Контакты', scrollTo: 'contacts' }
       ],
@@ -142,8 +142,9 @@ export default {
       this.widthScroll = activeLink
     },
     scrollTo (refName) {
+      const navbarHeight = document.querySelector('.navbar').clientHeight
       const el = document.querySelector(`[data-ref=${refName}]`)
-      window.scrollTo(0, el.offsetTop)
+      window.scrollTo(0, el.offsetTop - navbarHeight)
     },
     openMobileMenu () {
       if (this.menuIsOpen === false) {
@@ -209,7 +210,7 @@ export default {
       img
         position: absolute
         left: -30px
-        top: 11px
+        top: -5px
       p
         white-space: nowrap
         line-height: 16px
@@ -250,6 +251,7 @@ export default {
       &-phone
         display: flex
         text-decoration: none
+        align-items: center
         p
           font-size: 16px
           white-space: nowrap
@@ -308,6 +310,7 @@ export default {
         border: 1px solid #ffffff
         border-radius: 4px
         cursor: pointer
+        height: 42px
         &-line
           display: block
           width: 20px

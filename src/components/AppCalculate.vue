@@ -1,8 +1,8 @@
 <template>
   <div class="container second-section" data-ref="calc">
     <div class="col-xxl-7 col-xl-8 col-lg-10 col-12 offset-xl-1">
-      <h2 class="title">Расчет стоимости</h2>
-      <p class="subtitle">Получите полный расчет стоимости и сроков ремонта Вашей квартиры, дома или помещения</p>
+      <h2 class="title">{{ block.title }}</h2>
+      <p class="subtitle">{{ block.subtitle }}</p>
     </div>
     <div class="col-xl-10 col-12 offset-xl-1">
       <div class="second-section__calc-wrapper">
@@ -12,10 +12,10 @@
           </div>
           <div class="col-lg-3 col-12 p-0 second-section__calc-wrapper__right-side">
             <div class="right-side__wrapper">
-              <div class="divider d-none d-lg-block"></div>
-              <p class="right-side__text">Наш опыт в ремонтных работах показывает, что есть много факторов, которые влияют на конечную стоимость работы. Чтобы мы могли более точно рассчитать предварительную смету вашего объекта, нам необходимо задать вам несколько вопросов.</p>
+              <div class="divider disp-none d-lg-block"></div>
+              <p class="right-side__text">{{ block.calc_text }}</p>
               <div class="divider"></div>
-              <p class="right-side__subtext">Если у вас нет времени заполнять форму, вы можете просто позвонить нам или заказать расчет:</p>
+              <p class="right-side__subtext">{{ block.calc_subtext }}</p>
               <app-button
                 :event="'modal'"
                 :type="'calc'"
@@ -37,6 +37,7 @@ import AppCalc from '@/components/AppCalc'
 
 export default {
   name: 'AppCalculate',
+  props: ['block'],
   components: { AppCalc, AppButton }
 }
 </script>
@@ -56,16 +57,18 @@ export default {
             position: absolute
             top: 50%
             transform: translateY(-50%)
-            padding: 0 25px
+            padding: 0 25px 0 0
           &__text
             margin-top: 0
             margin-bottom: 10px
             font-family: "Muller Regular"
             font-size: 18px
-            line-height: 25px
+            line-height: normal
           &__subtext
             font-family: "Muller Bold"
             font-size: 16px
+            line-height: normal
+            margin-bottom: 10px
 @media (max-width: 1399.98px)
   .second-section
     &__calc-wrapper
@@ -73,7 +76,6 @@ export default {
         .right-side
           &__text
             font-size: 16px
-            line-height: unset
 
 //@media (max-width: 1199.98px)
 

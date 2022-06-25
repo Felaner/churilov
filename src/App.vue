@@ -1,107 +1,59 @@
 <template>
-  <div v-if="loadingPercent < 100" class="loader">
+  <div v-if="loading" class="loader">
     <div class="loader-wrapper">
-      <img src="@/assets/images/logo-black.svg" alt="logo">
-<!--      <div class="loader-progressbar">-->
-<!--        <div class="loader-progressbar__inner" :style="{width: loadingPercent + '%'}"></div>-->
-<!--      </div>-->
+      <img :src="require('@/assets/images/logo-black.svg')" alt="logo">
     </div>
   </div>
-  <app-navbar></app-navbar>
-  <app-modal v-if="this.modalIsOpen"></app-modal>
-  <app-main></app-main>
-  <app-calculate></app-calculate>
-  <app-about-us></app-about-us>
-  <app-facts></app-facts>
-  <app-need-price></app-need-price>
-  <app-steps></app-steps>
-  <app-portfolio></app-portfolio>
-  <app-excursion></app-excursion>
-  <app-reviews></app-reviews>
-  <!--  <app-stock></app-stock>-->
-  <app-add-services></app-add-services>
-  <app-contacts></app-contacts>
-  <app-faq></app-faq>
-  <app-form-block></app-form-block>
-  <app-footer></app-footer>
+  <router-view :blocks="this.blocks" v-else></router-view>
+  <notifications/>
 </template>
 
 <script>
 
-import AppNavbar from '@/components/AppNavbar'
-import AppMain from '@/components/AppMain'
-import AppCalculate from '@/components/AppCalculate'
-import AppAboutUs from '@/components/AppAboutUs'
-import AppFacts from '@/components/AppFacts'
-import AppNeedPrice from '@/components/AppNeedPrice'
-import AppSteps from '@/components/AppSteps'
-import AppPortfolio from '@/components/AppPortfolio'
-import AppExcursion from '@/components/AppExcursion'
-import AppReviews from '@/components/AppReviews'
-// import AppStock from '@/components/AppStock'
-import AppAddServices from '@/components/AppAddServices'
-import AppContacts from '@/components/AppContacts'
-import AppFaq from '@/components/AppFaq'
-import AppFormBlock from '@/components/AppFormBlock'
-import AppFooter from '@/components/AppFooter'
-import AppModal from '@/components/AppModal'
+import messages from '@/utils/messages'
 
 export default {
   name: 'App',
   data () {
     return {
-      loadingPercent: 0,
-      loadTime: 0,
-      interval: null,
-      modalIsOpen: false
+      blocks: [],
+      loading: true
     }
   },
-  created () {
-    document.body.style.overflow = 'hidden'
-    const perfData = window.performance.timing
-    const estimatedTime = Math.abs(perfData.loadEventEnd - perfData.navigationStart)
-    this.loadTime = (estimatedTime / 1000) % 60 * 100
-    console.log(typeof this.loadTime)
-    this.doProgress()
-  },
-  methods: {
-    doProgress () {
-      const step = this.loadTime / 100
-      this.interval = setInterval(() => {
-        this.loadingPercent++
-      }, step)
-    }
+  async mounted () {
+    this.blocks = await this.$store.dispatch('fetchBlocks')
+    this.$store.state.editData.navbar = this.blocks[0].navbar
+    this.$store.state.editData.modal = this.blocks[0].modal
+    this.$store.state.editData.main = this.blocks[0].main
+    this.$store.state.editData.price = this.blocks[0].price
+    this.$store.state.editData.why_we = this.blocks[0].why_we
+    this.$store.state.editData.facts = this.blocks[0].facts
+    this.$store.state.editData.want = this.blocks[0].want
+    this.$store.state.editData.steps = this.blocks[0].steps
+    this.$store.state.editData.portfolio = this.blocks[0].portfolio
+    this.$store.state.editData.excursion = this.blocks[0].excursion
+    this.$store.state.editData.reviews = this.blocks[0].reviews
+    this.$store.state.editData.add_services = this.blocks[0].add_services
+    this.$store.state.editData.contacts = this.blocks[0].contacts
+    this.$store.state.editData.faq = this.blocks[0].faq
+    this.$store.state.editData.form_block = this.blocks[0].form_block
+    this.$store.state.editData.footer = this.blocks[0].footer
+    this.loading = false
   },
   computed: {
-    loaded () {
-      return this.loadingPercent + '%'
+    error () {
+      return this.$store.getters.error
     }
   },
   watch: {
-    loadingPercent (val) {
-      if (val >= 100) {
-        document.body.style.overflow = 'visible'
-        clearInterval(this.interval)
+    error (fbError) {
+      if (messages[fbError.code]) {
+        this.$notify({
+          type: 'error',
+          text: messages[fbError.code]
+        })
       }
     }
-  },
-  components: {
-    AppModal,
-    AppFooter,
-    AppFormBlock,
-    AppFaq,
-    AppContacts,
-    AppAddServices,
-    AppReviews,
-    AppExcursion,
-    AppPortfolio,
-    AppSteps,
-    AppNeedPrice,
-    AppNavbar,
-    AppMain,
-    AppCalculate,
-    AppAboutUs,
-    AppFacts
   }
 }
 </script>
@@ -129,6 +81,7 @@ export default {
     height: 10px
     width: 100%
     border-radius: 2px
+
     &__inner
       height: 100%
       border-radius: 2px

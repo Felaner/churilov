@@ -3,14 +3,13 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-6 col-lg-7 offset-xl-1">
-          <p class="main-change d-none d-sm-block">Планируете ремонт
+          <p class="main-change disp-none d-sm-block">{{ block.planing }}
             <transition name="fade" v-for="(item, index) of texts" :key="index">
               <span v-if="item.show">{{ item.text }}</span>
             </transition>
           </p>
-          <h1 class="main-title">Сделаем качественный ремонт вашей квартиры, дома или помещения
-            в Барнауле <span>от 8000 р/м2</span> точно в срок с гарантией 0 лет</h1>
-          <p class="main-subtitle">Все работы по <strong>ГОСТ</strong>у</p>
+          <h1 class="main-title">{{ block.title_first }} <span>{{ block.title_price }}</span> {{ block.title_last }}</h1>
+          <p class="main-subtitle">{{ block.gost }}</p>
           <app-button
             :event="'scroll'"
             :type="'estimate'"
@@ -28,13 +27,14 @@
 import AppButton from '@/components/AppButton'
 
 export default {
-  name: 'AppMain',
+  name: 'AppMainScreen',
+  props: ['block'],
   data () {
     return {
       texts: [
-        { show: true, text: 'в квартире' },
-        { show: false, text: 'в своем доме' },
-        { show: false, text: 'в магазине или офисе' }
+        { show: true, text: this.block.change[0] },
+        { show: false, text: this.block.change[1] },
+        { show: false, text: this.block.change[2] }
       ],
       textActive: 1
     }
@@ -84,6 +84,8 @@ export default {
       text-align: left
       color: #ffffff
       font-size: 32px
+      line-height: normal
+      margin: 20px 0
       span
         color: #FF0000
     &-subtitle

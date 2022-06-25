@@ -3,12 +3,12 @@
     <div class="container">
       <div class="row">
         <div class="col-xxl-2 col-lg-3 col-12 offset-xxl-1 d-flex flex-lg-column justify-lg-center flex-sm-row justify-sm-between flex-column">
-          <p>2018 - 2021 © Churilov_Pro</p>
+          <p>{{ block.years_and_company }}</p>
           <p>Все права защищены</p>
           <p>Политика конфиденциальности</p>
         </div>
         <div class="col-xxl-8 col-lg-9 col-12">
-          <p class="footer-text">Данный интернет-сайт носит исключительно информационный характер и ни при каких условиях не является публичной офертой, определяемой положениями Статьи 437 п.2 Гражданского кодекса Российской Федерации. Для получения подробной информации о стоимости указанных услуг, пожалуйста, обращайтесь к администрации сайта с помощью специальной формы связи или по телефону.</p>
+          <p class="footer-text">{{ block.text }}</p>
         </div>
       </div>
     </div>
@@ -17,7 +17,8 @@
 
 <script>
 export default {
-  name: 'AppFooter'
+  name: 'AppFooter',
+  props: ['block']
 }
 </script>
 

@@ -3,15 +3,15 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-10 col-lg-12 offset-xl-1">
-          <h2 class="title">Этапы работ</h2>
-          <p class="subtitle">Мы легко и надежно проведем вас от первой встречи до сдачи всех работ и торжественного вручения ключей от вашей новой красивой и чистой квартиры. Вам останется только привезти мебель и открыть шампанское ...</p>
+          <h2 class="title">{{ block.title }}</h2>
+          <p class="subtitle">{{ block.subtitle }}</p>
         </div>
         <div class="col-xl-5 col-lg-6 offset-xl-1">
           <div class="row">
             <div class="col-12 mb-3">
               <div class="steps-card__small steps-card__small-1">
-                <h3 class="steps-card__title">ЗАМЕР</h3>
-                <p class="steps-card__subtitle">Бесплатный выезд на ваш<br>объект в черте города</p>
+                <h3 class="steps-card__title">{{ block.step[0].title }}</h3>
+                <p class="steps-card__subtitle">{{ block.step[0].subtitle_first }}<br>{{ block.step[0].subtitle_last }}</p>
                 <app-button
                   :event="'modal'"
                   :type="'order'"
@@ -21,36 +21,36 @@
             </div>
             <div class="col-12 mb-3">
               <div class="steps-card__small steps-card__small-2">
-                <h3 class="steps-card__title">СМЕТА</h3>
-                <p class="steps-card__subtitle">Бесплатный расчет сметы<br>ремонта вашего объекта</p>
+                <h3 class="steps-card__title">{{ block.step[1].title }}</h3>
+                <p class="steps-card__subtitle">{{ block.step[1].subtitle_first }}<br>{{ block.step[1].subtitle_last }}</p>
               </div>
             </div>
           </div>
         </div>
         <div class="col-xl-5 col-lg-6 mb-3">
           <div class="steps-card__large steps-card__large-3">
-            <h3 class="steps-card__title">ДОГОВОР</h3>
-            <p class="steps-card__subtitle">Можем привезти договор вам домой,<br>если вам не удобно ехать в офис</p>
+            <h3 class="steps-card__title">{{ block.step[2].title }}</h3>
+            <p class="steps-card__subtitle">{{ block.step[2].subtitle_first }}<br>{{ block.step[2].subtitle_last }}</p>
           </div>
         </div>
         <div class="col-xl-5 col-lg-6 offset-xl-1 mb-sm-0 mb-3">
           <div class="steps-card__large steps-card__large-4">
-            <h3 class="steps-card__title">ДОГОВОР</h3>
-            <p class="steps-card__subtitle">Можем привезти договор вам домой,<br>если вам не удобно ехать в офис</p>
+            <h3 class="steps-card__title">{{ block.step[3].title }}</h3>
+            <p class="steps-card__subtitle">{{ block.step[3].subtitle_first }}<br>{{ block.step[3].subtitle_last }}</p>
           </div>
         </div>
         <div class="col-xl-5 col-lg-6">
           <div class="row">
             <div class="col-12 mb-3">
               <div class="steps-card__small steps-card__small-5">
-                <h3 class="steps-card__title">ЗАМЕР</h3>
-                <p class="steps-card__subtitle">Бесплатный выезд на ваш<br>объект в черте города</p>
+                <h3 class="steps-card__title">{{ block.step[4].title }}</h3>
+                <p class="steps-card__subtitle">{{ block.step[4].subtitle_first }}<br>{{ block.step[4].subtitle_last }}</p>
               </div>
             </div>
             <div class="col-12">
               <div class="steps-card__small steps-card__small-6">
-                <h3 class="steps-card__title">СМЕТА</h3>
-                <p class="steps-card__subtitle">Бесплатный расчет сметы<br>ремонта вашего объекта</p>
+                <h3 class="steps-card__title">{{ block.step[5].title }}</h3>
+                <p class="steps-card__subtitle">{{ block.step[5].subtitle_first }}<br>{{ block.step[5].subtitle_last }}</p>
               </div>
             </div>
           </div>
@@ -64,6 +64,7 @@
 import AppButton from '@/components/AppButton'
 export default {
   name: 'AppSteps',
+  props: ['block'],
   components: { AppButton }
 }
 </script>
@@ -76,7 +77,7 @@ export default {
       &__small
         display: flex
         flex-direction: column
-        justify-content: end
+        justify-content: flex-end
         background: black
         min-height: 305px
         padding: 30px 40px
@@ -97,7 +98,7 @@ export default {
       &__large
         display: flex
         flex-direction: column
-        justify-content: end
+        justify-content: flex-end
         background: black
         height: 100%
         padding: 30px 40px
@@ -116,6 +117,7 @@ export default {
         font-size: 30px
         text-align: start
         color: #ffffff
+        text-transform: uppercase
         &::before
           content: '0' counter(item)
           counter-increment: item
@@ -131,6 +133,7 @@ export default {
         font-family: "Muller Regular"
         font-size: 20px
         color: #ffffff
+        margin: 40px 0 0
 
 @media (max-width: 1399.98px)
   .steps

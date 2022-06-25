@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-10 col-12 offset-xl-1">
-          <h1 class="title">Акция <br class="d-none d-sm-block">на 1 000 000</h1>
+          <h1 class="title">Акция <br class="disp-none d-sm-block">на 1 000 000</h1>
           <p class="subtitle">Дарим страховой сертификат на сумму 1 000 000 руб.</p>
           <app-button
             :event="'modal'"
@@ -11,7 +11,7 @@
             :text="'Получить сертификат'"
             :bg-none="true"
           ></app-button>
-          <img class="d-lg-block d-none" src="@/assets/images/stock-img.png" alt="image">
+          <img class="d-lg-block disp-none" :src="require('@/assets/images/stock-img.png')" alt="image">
         </div>
       </div>
     </div>

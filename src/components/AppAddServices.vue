@@ -3,56 +3,56 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-10 col-lg-12 offset-xl-1">
-          <h2 class="title">Дополнительные услуги</h2>
-          <p class="subtitle">которые мы делаем профессионально</p>
+          <h2 class="title">{{ block.title }}</h2>
+          <p class="subtitle">{{ block.subtitle }}</p>
         </div>
       </div>
       <div class="row">
         <div class="col-xl-5 col-md-6 offset-xl-1">
           <div class="add-services-card">
-            <h3 class="add-services-card__title">Дизайн и<br>проектирование</h3>
-            <img src="@/assets/images/add-services-design.png" alt="design">
+            <h3 class="add-services-card__title">{{ block.cards[0].title_first }}<br>{{ block.cards[0].title_last }}</h3>
+            <img :src="require(`../assets/images/${ block.cards[0].image }`)" alt="design">
           </div>
         </div>
         <div class="col-xl-5 col-md-6">
           <div class="add-services-card">
-            <h3 class="add-services-card__title">Строительство<br>под ключ</h3>
-            <img src="@/assets/images/add-services-build.png" alt="build">
+            <h3 class="add-services-card__title">{{ block.cards[1].title_first }}<br>{{ block.cards[1].title_last }}</h3>
+            <img :src="require(`../assets/images/${ block.cards[1].image }`)" alt="build">
           </div>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-6 offset-xl-1">
           <div class="add-services-card">
-            <h3 class="add-services-card__title">Штукатурка<br>стен и фасадов</h3>
+            <h3 class="add-services-card__title">{{ block.cards[2].title_first }}<br>{{ block.cards[2].title_last }}</h3>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-6">
           <div class="add-services-card">
-            <h3 class="add-services-card__title">Стяжка<br>пола</h3>
-            <img src="@/assets/images/add-services-floor.png" alt="floor">
+            <h3 class="add-services-card__title">{{ block.cards[3].title_first }}<br>{{ block.cards[3].title_last }}</h3>
+            <img :src="require(`../assets/images/${ block.cards[3].image }`)" alt="floor">
           </div>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-6">
           <div class="add-services-card">
-            <h3 class="add-services-card__title">Натяжной<br>потолок</h3>
-            <img class="add-services-card__last-image" src="@/assets/images/add-services-ceiling.png" alt="ceiling">
+            <h3 class="add-services-card__title">{{ block.cards[4].title_first }}<br>{{ block.cards[4].title_last }}</h3>
+            <img class="add-services-card__last-image" :src="require(`../assets/images/${ block.cards[4].image }`)" alt="ceiling">
           </div>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-xl-5 col-lg-6 offset-xl-1 d-flex flex-column justify-center">
-          <h2 class="title">Механизированную штукатурку стен</h2>
-          <p class="subtitle mb-0">мы производим на штукатурной станции собственного производства</p>
+          <h2 class="title">{{ block.second_title }}</h2>
+          <p class="subtitle mb-0">{{ block.second_subtitle }}</p>
           <app-button
             :event="'modal'"
             :type="'estimate'"
-            :text="'Заказать услуги'"
-            :subtext="'1 замер бесплатно'"
+            :text="block.button"
+            :subtext="block.button_small"
             :color="'#FF0000'"
           ></app-button>
         </div>
-        <div class="col-xl-5 col-lg-6 d-none d-lg-block">
+        <div class="col-xl-5 col-lg-6 disp-none d-lg-block">
           <div class="add-services-img">
-            <img src="@/assets/images/add-services-img.png" alt="img">
+            <img :src="require(`../assets/images/${ block.image }`)" alt="img">
           </div>
         </div>
       </div>
@@ -64,6 +64,7 @@
 import AppButton from '@/components/AppButton'
 export default {
   name: 'AppAddServices',
+  props: ['block'],
   components: { AppButton }
 }
 </script>
@@ -90,7 +91,7 @@ export default {
         bottom: 0
     &-img
       display: flex
-      justify-content: end
+      justify-content: flex-end
 
 @media (max-width: 1399.98px)
   .add-services

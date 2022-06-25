@@ -3,27 +3,27 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-6 col-lg-7 offset-xl-1">
-          <h2 class="title">Контакты</h2>
-          <p class="contacts-name">Андрей Чурилов</p>
+          <h2 class="title">{{ block.title }}</h2>
+          <p class="contacts-name">{{ block.name }}</p>
           <p class="contacts-address">
-            Директор филиала <span>Churilov_Pro</span><br>г. Барнаул
+            {{ block.post }} <span>{{ block.company_name }}</span><br>{{ block.address }}
           </p>
-          <a href="tel:+79237249700" class="contacts-phone">+7 (923) 724-97-00</a>
-          <p class="contacts-add">По всем вопросам, касающимся ремонта или отделки вы можете обратиться лично ко мне и я обязательно вам отвечу в самый короткий срок.</p>
+          <a href="tel:+79237249700" class="contacts-phone">{{ block.phone }}</a>
+          <p class="contacts-add">{{ block.subtitle }}</p>
           <div class="contacts-buttons">
-            <a href="https://api.whatsapp.com/send/?phone=79237249700&text&app_absent=0" target="_blank">
-              <img src="@/assets/images/icons/wa.svg" alt="whatsapp">
+            <a :href="`https://api.whatsapp.com/send/?phone=${ this.block.whatsapp }&text&app_absent=0`" target="_blank">
+              <img :src="require('@/assets/images/icons/wa.svg')" alt="whatsapp">
               Есть вопросы?<br>пишите в WhatsApp
             </a>
-            <a href="https://instagram.com/churilov_pro?igshid=YmMyMTA2M2Y=" target="_blank">
-              <img src="@/assets/images/icons/ig.svg" alt="instagram">
+            <a :href="this.block.instagram" target="_blank">
+              <img :src="require('@/assets/images/icons/ig.svg')" alt="instagram">
               Подписаться на <br>Instagram
             </a>
           </div>
         </div>
-        <div class="col-lg-5 d-none d-lg-block">
+        <div class="col-lg-5 disp-none d-lg-block">
           <div class="contacts-image">
-            <img src="@/assets/images/contacts-image.png" alt="man">
+            <img :src="require('@/assets/images/contacts-image.png')" alt="man">
           </div>
         </div>
       </div>
@@ -33,7 +33,8 @@
 
 <script>
 export default {
-  name: 'AppContacts'
+  name: 'AppContacts',
+  props: ['block']
 }
 </script>
 

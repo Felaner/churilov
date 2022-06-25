@@ -3,14 +3,12 @@
     <Slide v-for="slide in slides" :key="slide">
       <div class="carousel__item">
         <div class="carousel__item-contacts">
-          <div class="carousel__item-contacts__avatar">
-            <img :src="slide.avatar" alt="avatar">
-          </div>
           <div class="carousel__item-contacts__wrapper">
             <div class="carousel__item-contacts__name">{{ slide.name }}</div>
             <div class="carousel__item-contacts__address">{{ slide.address }}</div>
           </div>
         </div>
+        <v-divider class="mb-3"></v-divider>
         <p class="carousel__item-review">{{ slide.text }}</p>
       </div>
     </Slide>
@@ -74,7 +72,7 @@ export default defineComponent({
       display: flex
       flex-direction: column
       justify-content: center
-      margin-left: 10px
+      margin-bottom: 10px
     &__name
       text-align: left
       font-family: "Muller Bold"
@@ -128,9 +126,6 @@ export default defineComponent({
 @media (max-width: 575.98px)
   .carousel__item
     &-contacts
-      &__avatar
-        img
-          width: 50px
       &__name
         font-size: 16px
       &__address

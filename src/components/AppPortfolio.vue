@@ -3,25 +3,33 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-10 col-12 offset-xl-1">
-          <h2 class="title">Фото объектов</h2>
+          <h2 class="title">{{ block.title }}</h2>
           <p class="subtitle">
-            Мы легко и надежно проведем вас от первой встречи до сдачи всех работ и торжественного вручения ключей от вашей новой красивой и чистой квартиры. Вам останется только привезти мебель и открыть шампанское ...
+            {{ block.subtitle }}
           </p>
         </div>
         <div class="col-xl-2 col-lg-3 col-12 d-flex d-lg-block offset-xl-1">
           <div class="portfolio-item">
             <app-reason-card
               :reason-height="'100%'"
-              :reason-digit="'140'"
-              :reason-text="'Объектов выполнено за 2021г'"
+              :reason-digit="block.card.digit"
+              :reason-text="block.card.text"
             ></app-reason-card>
           </div>
         </div>
-        <div class="col-xl-2 col-lg-3 col-sm-4 col-6" v-for="(project, index) of projects" :key="index" :class="{ 'offset-xl-1': (index + 1) % 5 === 0}">
-          <div class="portfolio-item">
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-6" v-for="(image, index) of images" :key="index" :class="{ 'offset-xl-1': (index + 1) % 5 === 0}">
+          <div class="portfolio-item" @click="fullScreenImage(image)">
             <picture>
-              <img :src="project.image" alt="img">
+              <img :src="image" alt="img">
             </picture>
+          </div>
+        </div>
+        <div class="col-12 mt-3">
+          <div class="row">
+            <p class="instagram-text text-center mb-2">{{ block.text }}</p>
+            <a :href="this.block.instagram" target="_blank" class="text-center">
+              <img :src="require('@/assets/images/icons/ig.svg')" width="100" height="100" alt="instagram">
+            </a>
           </div>
         </div>
       </div>
@@ -31,22 +39,19 @@
 
 <script>
 import AppReasonCard from '@/components/AppReasonCard'
+
 export default {
   name: 'AppPortfolio',
+  props: ['block'],
+  methods: {
+    fullScreenImage (image) {
+      this.$store.state.imageName = image
+    }
+  },
   components: { AppReasonCard },
   data () {
     return {
-      projects: [
-        { image: require('../assets/images/portfolio-img.jpg') },
-        { image: require('../assets/images/portfolio-img.jpg') },
-        { image: require('../assets/images/portfolio-img.jpg') },
-        { image: require('../assets/images/portfolio-img.jpg') },
-        { image: require('../assets/images/portfolio-img.jpg') },
-        { image: require('../assets/images/portfolio-img.jpg') },
-        { image: require('../assets/images/portfolio-img.jpg') },
-        { image: require('../assets/images/portfolio-img.jpg') },
-        { image: require('../assets/images/portfolio-img.jpg') }
-      ]
+      images: this.block.images
     }
   }
 }
@@ -55,6 +60,8 @@ export default {
 <style scoped lang="sass">
   .portfolio
     padding-bottom: 50px
+    .instagram-text
+      font-size: 1.5rem
     &-item
       position: relative
       height: 100%

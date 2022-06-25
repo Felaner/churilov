@@ -3,8 +3,8 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-5 col-lg-6 offset-xl-1">
-          <h2 class="title">Не на все вопросы <br class="d-none d-lg-block">получили ответ?</h2>
-          <p class="subtitle">напишите нам ваш вопрос и мы максимально быстро вам ответим</p>
+          <h2 class="title">{{ block.title_first }} <br class="disp-none d-lg-block">{{ block.title_last }}</h2>
+          <p class="subtitle">{{ block.subtitle }}</p>
           <form action="/" class="form" @submit.prevent="sendForm">
             <input v-model="data.quest" name="quest" type="text" placeholder="Напишите ваш вопрос">
             <input v-model="data.name" name="name" type="text" placeholder="Ваше имя">
@@ -15,13 +15,13 @@
             </div>
             <app-button
               :type="'order'"
-              :text="'Отправить вопрос'"
+              :text="block.button"
               :bg-none="true"
             ></app-button>
           </form>
         </div>
-        <div class="col-xl-4 col-lg-5 offset-xl-1 d-lg-block d-none">
-          <img src="@/assets/images/form-block-img.jpg" alt="image">
+        <div class="col-xl-4 col-lg-5 offset-xl-1 d-lg-block disp-none">
+          <img :src="require('@/assets/images/form-block-img.jpg')" alt="image">
         </div>
       </div>
     </div>
@@ -32,6 +32,7 @@
 import AppButton from '@/components/AppButton'
 export default {
   name: 'AppFormBlock',
+  props: ['block'],
   components: { AppButton },
   data () {
     return {

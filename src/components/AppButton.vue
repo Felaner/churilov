@@ -52,7 +52,7 @@ export default {
         const el = document.querySelector('[data-ref="calc"]')
         window.scrollTo(0, el.offsetTop)
       } else if (event === 'modal') {
-        this.$root.modalIsOpen = true
+        this.$store.state.modalIsOpen = true
       }
     }
   }
@@ -71,7 +71,7 @@ button
   border-radius: 2px
   color: #ffffff
   font-size: 12px
-  padding: 10px 20px 10px 52px
+  padding: 10px 15px 10px 47px
   text-transform: uppercase
   transition: all .3s
   svg
@@ -93,6 +93,7 @@ button
   font-family: "Muller Regular"
   font-size: 18px
   color: #ffffff
+  line-height: normal
   span
     font-size: 14px
   svg

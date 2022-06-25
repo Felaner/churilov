@@ -3,33 +3,20 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-10 col-lg-12 offset-xl-1">
-          <h2 class="title mb-3">Ответы на частые<br>вопросы</h2>
-          <div
-            class="faq-tab"
-            :class="{ 'faq-tab__active': activeTab === item.id }"
-            v-for="item of faq"
-            :key="item.id"
-          >
-            <div class="d-flex faq-tab__wrapper" @click="toggleTab(item.id)">
-              <button class="faq-tab__button">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <line x1="4.5" y1="17.5" x2="31.5" y2="17.5" :stroke="activeTab === item.id ? '#ff0000' : 'black'" stroke-width="3" stroke-linecap="round"/>
-                  <path v-if="activeTab !== item.id" d="M18 5L18 31" stroke="black" stroke-width="3" stroke-linecap="round"/>
-                  <rect x="0.5" y="0.5" width="35" height="35" rx="1.5" stroke="black"/>
-                </svg>
-
-              </button>
-              <p class="faq-tab__quest">{{ item.quest }}</p>
-            </div>
-            <transition name="nested" :duration="550">
-              <div v-if="activeTab === item.id" class="outer">
-                <div class="inner">
-                  <p class="faq-tab__answer">{{ item.answer }}</p>
-                </div>
-              </div>
-            </transition>
-            <div class="divider"></div>
-          </div>
+          <h2 class="title mb-3">{{ block.title_first }}<br>{{ block.title_last }}</h2>
+          <v-expansion-panels>
+            <v-expansion-panel
+              v-for="i in faq"
+              :key="i.id"
+            >
+              <v-expansion-panel-title>
+                {{ i.quest }}
+              </v-expansion-panel-title>
+              <v-expansion-panel-text>
+                {{ i.answer }}
+              </v-expansion-panel-text>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </div>
       </div>
     </div>
@@ -39,20 +26,10 @@
 <script>
 export default {
   name: 'AppFaq',
+  props: ['block'],
   data () {
     return {
-      faq: [
-        { id: 1, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 2, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 3, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 4, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 5, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 6, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 7, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 8, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 9, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' },
-        { id: 10, quest: 'Как происходит процесс работы ремонта под ключ?', answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorum eius eveniet facere fuga, harum incidunt obcaecati quas rem ut.' }
-      ],
+      faq: this.block.quests,
       activeTab: 0
     }
   },

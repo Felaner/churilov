@@ -29,6 +29,8 @@ export default {
     border: 1px solid rgba(0, 0, 0, 0.6)
     border-radius: 4px
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2)
+    .divider
+      margin: 10px 0
     &__wrapper
       height: 100%
       background: #ffffff
@@ -42,6 +44,7 @@ export default {
     &__title
       font-family: "Muller Bold"
       font-size: 24px
+      margin-bottom: 10px
     &__text
       margin: 0
       font-family: "Muller Regular"

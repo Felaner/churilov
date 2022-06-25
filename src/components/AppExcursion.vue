@@ -2,12 +2,12 @@
   <div class="excursion">
     <div class="container">
       <div class="excursion-circle">
-        <img src="@/assets/images/excursion-circle.png" alt="circle">
+        <img :src="require('@/assets/images/excursion-circle.png')" alt="circle">
       </div>
       <div class="row">
         <div class="col-lg-5 col-md-7 col-sm-8 col-12 offset-lg-1 excursion-wrapper">
-          <h2 class="title">Экскурсия на наш объект</h2>
-          <p class="subtitle">Если вы хотите посмотреть на качество работы наших мастеров, то мы можем организовать экскурсию на любой наш объект</p>
+          <h2 class="title">{{ block.title }}</h2>
+          <p class="subtitle">{{ block.subtitle }}</p>
           <app-button
             :event="'modal'"
             :type="'order'"
@@ -24,6 +24,7 @@
 import AppButton from '@/components/AppButton'
 export default {
   name: 'AppExcursion',
+  props: ['block'],
   components: { AppButton }
 }
 </script>

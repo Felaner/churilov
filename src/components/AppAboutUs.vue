@@ -1,7 +1,7 @@
 <template>
   <div class="about" data-ref="about">
     <div class="container">
-      <h2 class="title">Почему выбирая нашу компанию вы<br> делаете правильное решение</h2>
+      <h2 class="title">{{ block.title_first }}<br>{{ block.title_last}}</h2>
     </div>
     <div class="about-wrapper">
       <div class="container">
@@ -22,11 +22,11 @@
           </div>
           <div class="col-xl-5 col-lg-6 offset-lg-1 p-1 position-relative">
             <div class="about-header">
-              <img src="@/assets/images/logo-black.svg" alt="logo">
-              <p>это компания, которая имеет Миссию<br>и работает с любовью</p>
+              <img :src="require('@/assets/images/logo-black.svg')" alt="logo">
+              <p>{{ block.header_text_first }}<br>{{ block.header_text_last }}</p>
             </div>
-            <h3 class="title">Наша Миссия:</h3>
-            <p class="subtitle">сломать стереотип в голове клиента о том, что ремонт - это огромная головная боль и потраченные нервы. Обращаясь в нашу компанию  вы получаете первоклассный ремонт точно в срок и высококачественный сервис.</p>
+            <h3 class="title">{{ block.subtitle }}</h3>
+            <p class="subtitle">{{ block.text }}</p>
             <app-button
               class="about-button"
               :event="'scroll'"
@@ -46,15 +46,11 @@ import AppReasonCard from '@/components/AppReasonCard'
 import AppButton from '@/components/AppButton'
 export default {
   name: 'AppAboutUs',
+  props: ['block'],
   components: { AppButton, AppReasonCard },
   data () {
     return {
-      reasons: [
-        { digit: '100', text: 'сделали ремонтов в 2021 году' },
-        { digit: '100', text: 'сделали ремонтов в 2021 году' },
-        { digit: '100', text: 'сделали ремонтов в 2021 году' },
-        { digit: '100', text: 'сделали ремонтов в 2021 году' }
-      ]
+      reasons: this.block.card
     }
   }
 }

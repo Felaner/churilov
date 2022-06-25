@@ -1,49 +1,49 @@
 <template>
   <div class="facts" data-ref="facts">
     <div class="container">
-      <h2 class="title">5 фактов<br>почему выбирая нас<br>вы выбираете лучшее</h2>
+      <h2 class="title">{{ block.title_first }}<br>{{ block.title_middle }}<br>{{ block.title_last }}</h2>
     </div>
     <div class="facts-wrapper">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6 d-none d-lg-block">
+          <div class="col-lg-6 disp-none d-lg-block">
             <div class="facts-image">
-              <img src="@/assets/images/facts-man.png" alt="man">
+              <img :src="require('@/assets/images/facts-man.png')" alt="man">
             </div>
           </div>
           <div class="col-lg-6 col-12">
             <div class="facts-right-side">
-              <h3 class="title">Наша цель:</h3>
-              <p class="subtitle">Сделать для вас ремонт максимально комфортным и приятным процессом</p>
+              <h3 class="title">{{ block.subtitle }}</h3>
+              <p class="subtitle">{{ block.text }}</p>
               <ul class="facts-items">
                 <li class="facts-item">
                   <div class="facts-item__wrapper">
-                    <img src="@/assets/images/icons/facts-icon1.svg" alt="icon">
-                    Закупаем и аккуратно доставляем материалы на ваш объект
+                    <img :src="require('@/assets/images/icons/facts-icon1.svg')" alt="icon">
+                    {{ block.facts[0] }}
                   </div>
                 </li>
                 <li class="facts-item">
                   <div class="facts-item__wrapper">
-                    <img src="@/assets/images/icons/facts-icon2.svg" alt="icon">
-                    Качественно контролируем все этапы выполнения всех видов работ
+                    <img :src="require('@/assets/images/icons/facts-icon2.svg')" alt="icon">
+                    {{ block.facts[1] }}
                   </div>
                 </li>
                 <li class="facts-item">
                   <div class="facts-item__wrapper">
-                    <img src="@/assets/images/icons/facts-icon3.svg" alt="icon">
-                    Предоставляем полную прозрачную финансовую отчетность расходов
+                    <img :src="require('@/assets/images/icons/facts-icon3.svg')" alt="icon">
+                    {{ block.facts[2] }}
                   </div>
                 </li>
                 <li class="facts-item">
                   <div class="facts-item__wrapper">
-                    <img src="@/assets/images/icons/facts-icon4.svg" alt="icon">
-                    Делаем ежедневные фото и видео отчеты в WhatsApp или Telegram
+                    <img :src="require('@/assets/images/icons/facts-icon4.svg')" alt="icon">
+                    {{ block.facts[3] }}
                   </div>
                 </li>
                 <li class="facts-item">
                   <div class="facts-item__wrapper">
-                    <img src="@/assets/images/icons/facts-icon5.svg" alt="icon">
-                    При завершении работ вывозим весь мусор и делаем уборку помещения
+                    <img :src="require('@/assets/images/icons/facts-icon5.svg')" alt="icon">
+                    {{ block.facts[4] }}
                   </div>
                 </li>
               </ul>
@@ -81,14 +81,15 @@ import AppButton from '@/components/AppButton'
 import AppFactCard from '@/components/AppFactCard'
 export default {
   name: 'AppFacts',
+  props: ['block'],
   data () {
     return {
       facts: [
-        { title: '1. Закупка материалов', text: 'Мы сами закупим, доставим, аккуратно поднимем и сложим материалы на ваш объект. Вам не придется объезжать все базы и магазины в поисках лучшей цены, она у вас будет сразу, потому что мы имеем скидки на объем от всех ведущих поставщиков стройматериалов', image: require('../assets/images/fact1.png') },
-        { title: '2. Технический надзор объекта', text: 'Руководитель работ проверяет качество работы на каждом этапе ремонта. Вам не придется ходить за мастерами и постоянно тыкать их носом в косяки и недоделки, тратя на это ваши нервы, силы и уйму вашего драгоценного времени', image: require('../assets/images/fact2.png') },
-        { title: '3. Финансовая прозрачность', text: 'Мы предоставляем полную финансовую отчетность по всем расходам на объекте. Вам не придется выпрашивать чеки у мастеров и сверять суммы со сметой на материалы, отчеты и чеки по всем расходам вы получите в ваш мессенджер', image: require('../assets/images/fact3.png') },
-        { title: '4. Фото и видео отчеты о работе', text: 'Ежедневно мы будем информировать вас о том, как продвигается ремонт. Вам не придется волноваться о том, что происходит в вашей квартире, доме или помещении, на месте ли мастера и идут ли ремонтные работы', image: require('../assets/images/fact4.png') },
-        { title: '5. Уборка помещения', text: 'После всех работ мы вывезем всеь строительный мусор и сделаем уборку помещения. Вам не придется искать компанию, которая вывозит строительный мусор и отмывать все ваши стены и полы от строительной пыли', image: require('../assets/images/fact5.png') }
+        { title: this.block.cards[0].title, text: this.block.cards[0].text, image: require('../assets/images/fact1.png') },
+        { title: this.block.cards[1].title, text: this.block.cards[1].text, image: require('../assets/images/fact2.png') },
+        { title: this.block.cards[2].title, text: this.block.cards[2].text, image: require('../assets/images/fact3.png') },
+        { title: this.block.cards[3].title, text: this.block.cards[3].text, image: require('../assets/images/fact4.png') },
+        { title: this.block.cards[4].title, text: this.block.cards[4].text, image: require('../assets/images/fact5.png') }
       ]
     }
   },
